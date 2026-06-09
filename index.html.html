@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nelson Mitei | MEAL & Data Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #0f1720;
+    --sand:     #f5f1eb;
+    --sage:     #2d6a4f;
+    --sage-mid: #40916c;
+    --sage-lt:  #b7e4c7;
+    --rust:     #c1440e;
+    --rust-lt:  #fde8de;
+    --slate:    #4a5568;
+    --line:     #ddd8d0;
+    --white:    #ffffff;
+    --mono:     'JetBrains Mono', monospace;
+    --serif:    'DM Serif Display', serif;
+    --sans:     'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--sand);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--sage-lt);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage-lt); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 5rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -120px; top: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,79,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--sage-mid);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 32px; height: 1px;
+    background: var(--sage-mid);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage-lt);
+  }
+  .hero-desc {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--sage);
+    color: white;
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--sage-mid); transform: translateY(-1px); }
+  .hero-cta-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: 1rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .hero-cta-ghost:hover { border-color: var(--sage-lt); color: var(--sage-lt); }
+
+  /* Stats grid on right */
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+    background: rgba(255,255,255,0.06);
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.04);
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+  .stat-box:hover { background: rgba(45,106,79,0.12); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    color: var(--sage-lt);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5rem; }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--sage);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .section-sub {
+    color: var(--slate);
+    max-width: 560px;
+    margin-bottom: 3.5rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  /* ── DASHBOARDS ── */
+  #dashboards { background: var(--white); }
+  .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); }
+  .dash-card {
+    background: var(--white);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dash-card:hover { background: #fafaf8; }
+  .dash-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--sage);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .dash-card:hover::after { transform: scaleX(1); }
+  .dash-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--sage);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: #e8f5ee;
+    padding: 0.25rem 0.6rem;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+  }
+  .dash-visual {
+    height: 180px;
+    background: var(--sand);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+
+  /* Animated bar chart visual */
+  .bars { display: flex; align-items: flex-end; gap: 8px; padding: 1rem; width: 100%; }
+  .bar {
+    flex: 1; border-radius: 2px 2px 0 0;
+    background: var(--sage);
+    opacity: 0.7;
+    animation: growBar 1.2s ease forwards;
+    transform-origin: bottom;
+    transform: scaleY(0);
+  }
+  .bar:nth-child(2) { background: var(--sage-mid); animation-delay: 0.1s; }
+  .bar:nth-child(3) { background: var(--rust); opacity: 0.6; animation-delay: 0.2s; }
+  .bar:nth-child(4) { background: var(--sage); animation-delay: 0.3s; }
+  .bar:nth-child(5) { background: var(--sage-mid); animation-delay: 0.4s; }
+  .bar:nth-child(6) { background: var(--rust); opacity: 0.5; animation-delay: 0.5s; }
+  @keyframes growBar { to { transform: scaleY(1); } }
+
+  /* Line chart visual */
+  .line-visual { padding: 1rem; width: 100%; }
+
+  /* Donut visual */
+  .donut-wrap { display: flex; align-items: center; justify-content: center; width: 100%; }
+
+  .dash-title { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.5rem; }
+  .dash-desc { font-size: 0.83rem; color: var(--slate); line-height: 1.7; margin-bottom: 1rem; }
+  .dash-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tool-chip {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--slate);
+    border: 1px solid var(--line);
+    padding: 0.2rem 0.55rem;
+    letter-spacing: 0.05em;
+  }
+  .dash-metric {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--sage);
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ── M&E FRAMEWORK ── */
+  #framework { background: var(--sand); }
+  .framework-wrap {
+    background: var(--white);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .fw-header {
+    background: var(--ink);
+    padding: 1.8rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .fw-header-title { font-family: var(--serif); font-size: 1.3rem; color: var(--white); }
+  .fw-header-meta { font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+  .fw-chain {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .fw-col { border-right: 1px solid var(--line); }
+  .fw-col:last-child { border-right: none; }
+  .fw-col-head {
+    background: var(--sage);
+    padding: 0.9rem 1.2rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-family: var(--mono);
+  }
+  .fw-col-body { padding: 1.2rem; }
+  .fw-item {
+    font-size: 0.8rem;
+    color: var(--ink);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0ede8;
+    line-height: 1.5;
+  }
+  .fw-item:last-child { border-bottom: none; }
+  .fw-item strong { color: var(--sage); font-size: 0.72rem; display: block; margin-bottom: 0.15rem; font-family: var(--mono); }
+
+  .fw-outcomes {
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    background: #fafaf8;
+  }
+  .outcome-card {
+    border-left: 3px solid var(--sage);
+    padding: 1rem 1.2rem;
+    background: var(--white);
+  }
+  .outcome-num { font-family: var(--mono); font-size: 0.65rem; color: var(--sage); margin-bottom: 0.3rem; }
+  .outcome-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .outcome-text { font-size: 0.78rem; color: var(--slate); line-height: 1.6; }
+
+  /* ── DATA CLEANING CASE STUDY ── */
+  #cleaning { background: var(--ink); }
+  #cleaning .section-eyebrow { color: var(--sage-lt); }
+  #cleaning .section-title { color: var(--white); }
+  #cleaning .section-sub { color: rgba(255,255,255,0.5); }
+
+  .case-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
+  .case-timeline { position: relative; }
+  .case-timeline::before {
+    content: ''; position: absolute; left: 18px; top: 8px; bottom: 8px;
+    width: 1px; background: rgba(255,255,255,0.1);
+  }
+  .case-step {
+    display: flex; gap: 1.5rem; margin-bottom: 2rem; position: relative;
+  }
+  .step-dot {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 0.65rem; color: white;
+    font-weight: 600; position: relative; z-index: 1;
+  }
+  .step-content {}
+  .step-label { font-family: var(--mono); font-size: 0.65rem; color: var(--sage-lt); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .step-title { font-size: 0.9rem; font-weight: 600; color: white; margin-bottom: 0.4rem; }
+  .step-text { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  .case-result {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 2.5rem;
+  }
+  .result-title { font-family: var(--serif); font-size: 1.3rem; color: white; margin-bottom: 2rem; }
+  .result-before-after {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+  .result-col { padding: 1.5rem; }
+  .result-col.before { background: rgba(193,68,14,0.08); }
+  .result-col.after { background: rgba(45,106,79,0.12); }
+  .result-col-head { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
+  .result-col.before .result-col-head { color: var(--rust); }
+  .result-col.after .result-col-head { color: var(--sage-lt); }
+  .result-item { font-size: 0.8rem; color: rgba(255,255,255,0.55); padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); line-height: 1.5; }
+  .result-item:last-child { border-bottom: none; }
+
+  .kpi-row { display: flex; gap: 1.5rem; }
+  .kpi {
+    flex: 1; background: rgba(45,106,79,0.15);
+    border: 1px solid rgba(45,106,79,0.3);
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .kpi-val { font-family: var(--serif); font-size: 2rem; color: var(--sage-lt); }
+  .kpi-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+
+  /* code block */
+  .code-block {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: #a8d8b9;
+    line-height: 1.9;
+    overflow-x: auto;
+    margin-top: 1.5rem;
+  }
+  .code-comment { color: rgba(255,255,255,0.25); }
+  .code-fn { color: #f6c90e; }
+  .code-str { color: #e06c75; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--line); }
+  .skill-group { background: var(--white); padding: 2rem; }
+  .skill-group-title {
+    font-family: var(--mono); font-size: 0.65rem; color: var(--sage);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.2rem; padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.35rem 0; font-size: 0.83rem; color: var(--slate); }
+  .skill-item::before { content: '▸'; color: var(--sage); font-size: 0.6rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--sand); }
+  .contact-box {
+    background: var(--ink);
+    padding: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .contact-copy .section-eyebrow { color: var(--sage-lt); }
+  .contact-title { font-family: var(--serif); font-size: 2.2rem; color: white; margin-bottom: 1rem; }
+  .contact-text { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+  .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-icon { font-family: var(--mono); font-size: 0.7rem; color: var(--sage-lt); background: rgba(45,106,79,0.2); padding: 0.45rem 0.7rem; flex-shrink: 0; }
+  .contact-val { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+  .contact-val a { color: var(--sage-lt); text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.3); }
+  .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 2rem 4rem; }
+    .hero-stats { display: none; }
+    section { padding: 4rem 2rem; }
+    .dash-grid { grid-template-columns: 1fr; }
+    .fw-chain { grid-template-columns: 1fr 1fr; }
+    .case-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .contact-box { grid-template-columns: 1fr; padding: 2rem; }
+    .fw-outcomes { grid-template-columns: 1fr; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar { animation: none; transform: scaleY(1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Nelson Mitei · MEAL & Data</span>
+  <ul class="nav-links">
+    <li><a href="#dashboards">Dashboards</a></li>
+    <li><a href="#framework">M&E Framework</a></li>
+    <li><a href="#cleaning">Case Study</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">MEAL Specialist · Nairobi, Kenya</p>
+    <h1>Data that drives<br><em>decisions.</em></h1>
+    <p class="hero-desc">
+      6+ years building monitoring systems, cleaning messy datasets, and turning raw programme data into dashboards that actually get used — for Mastercard Foundation, KNBS, and government partners across Kenya.
+    </p>
+    <div>
+      <a href="#dashboards" class="hero-cta">View Portfolio</a>
+      <a href="mailto:mcmitey@gmail.com" class="hero-cta-ghost">Hire Me</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-box">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Years MEAL Experience</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">25%</div>
+      <div class="stat-label">Data Accuracy Improvement</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Staff Supervised & Trained</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">12</div>
+      <div class="stat-label">Analytical Reports p.a.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARDS -->
+<section id="dashboards">
+  <p class="section-eyebrow">Work Samples · 01</p>
+  <h2 class="section-title">Dashboard Development</h2>
+  <p class="section-sub">Interactive dashboards built for programme teams, county officials, and donor reporting — translating field data into decisions.</p>
+
+  <div class="dash-grid">
+
+    <!-- Dashboard 1 -->
+    <div class="dash-card">
+      <span class="dash-tag">Power BI · Employment</span>
+      <div class="dash-visual">
+        <div class="bars">
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:72%"></div>
+          <div class="bar" style="height:48%"></div>
+          <div class="bar" style="height:88%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:79%"></div>
+        </div>
+      </div>
+      <div class="dash-title">Youth Employment Tracking Dashboard</div>
+      <p class="dash-desc">Monthly tracking of employment outcomes across 4 Rift Valley counties for the Mastercard Foundation Ajira Digital Programme. Visualised placement rates, income levels at 0M / 3M / 6M, and gender disaggregation by county.</p>
+      <div class="dash-tools">
+        <span class="tool-chip">Power BI</span>
+        <span class="tool-chip">Excel</span>
+        <span class="tool-chip">KoboToolbox</span>
+      </div>
+      <p class="dash-metric">↑ 20% youth employment rate improvement tracked via dashboard</p>
+    </div>
+
+    <!-- Dashboard 2 -->
+    <div class="dash-card">
+      <span class="dash-tag">Excel · Reporting Matrix</span>
+      <div class="dash-visual">
+        <svg class="line-visual" viewBox="0 0 260 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+          <polyline points="10,120 50,90 90,95 130,60 170,45 210,30 250,20" stroke="#2d6a4f" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="10,125 50,115 90,108 130,100 170,88 210,75 250,65" stroke="#c1440e" stroke-width="1.5" stroke-dasharray="5,4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="130" cy="60" r="4" fill="#2d6a4f"/>
+          <circle cx="210" cy="30" r="4" fill="#2d6a4f"/>
+          <circle cx="250" cy="20" r="4" fill="#b7e4c7"/>
+          <text x="10" y="136" font-size="8" fill="#9ca3af" font-family="monospace">Jan</text>
+          <text x="88" y="136" font-size="8" fill="#9ca3af" font-family="monospace">Apr</text>
+          <text x="168" y="136" font-size="8" fill="#9ca3af" font-family="monospace">Jul</text>
+          <text x="238" y="136" font-size="8" fill="#9ca3af" font-family="monospace">Oct</text>
+          <text x="215" y="27" font-size="7.5" fill="#b7e4c7" font-family="monospace">Target met</text>
+        </svg>
+      </div>
+      <div class="dash-title">Programme Progress Reporting Matrix</div>
+      <p class="dash-desc">Dynamic Excel reporting matrix tracking 40+ indicators across outputs and outcomes. Automated RAG status (Red/Amber/Green) flags for programme managers and fed into quarterly donor reports to the Mastercard Foundation.</p>
+      <div class="dash-tools">
+        <span class="tool-chip">Advanced Excel</span>
+        <span class="tool-chip">SPSS</span>
+        <span class="tool-chip">ERP System</span>
+      </div>
+      <p class="dash-metric">100% compliance with donor reporting deadlines across 5 years</p>
+    </div>
+
+    <!-- Dashboard 3 -->
+    <div class="dash-card">
+      <span class="dash-tag">GIS · Spatial Analysis</span>
+      <div class="dash-visual">
+        <svg viewBox="0 0 260 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;padding:1rem">
+          <!-- Simplified Kenya county map shapes -->
+          <ellipse cx="80" cy="80" rx="55" ry="45" fill="rgba(45,106,79,0.15)" stroke="#2d6a4f" stroke-width="1"/>
+          <ellipse cx="170" cy="70" rx="65" ry="50" fill="rgba(45,106,79,0.25)" stroke="#40916c" stroke-width="1"/>
+          <ellipse cx="130" cy="120" rx="45" ry="28" fill="rgba(193,68,14,0.12)" stroke="#c1440e" stroke-width="1"/>
+          <circle cx="80" cy="80" r="5" fill="#2d6a4f"/>
+          <circle cx="170" cy="70" r="7" fill="#40916c"/>
+          <circle cx="130" cy="120" r="4" fill="#c1440e"/>
+          <text x="60" y="78" font-size="7" fill="#2d6a4f" font-family="monospace">Kericho</text>
+          <text x="150" y="65" font-size="7" fill="#1a4731" font-family="monospace">Rift Valley</text>
+          <text x="108" y="117" font-size="7" fill="#c1440e" font-family="monospace">Bomet</text>
+          <!-- Legend -->
+          <rect x="10" y="135" width="8" height="8" fill="rgba(45,106,79,0.5)"/>
+          <text x="22" y="143" font-size="6.5" fill="#6b7280" font-family="monospace">High coverage</text>
+          <rect x="100" y="135" width="8" height="8" fill="rgba(193,68,14,0.4)"/>
+          <text x="112" y="143" font-size="6.5" fill="#6b7280" font-family="monospace">Low coverage</text>
+        </svg>
+      </div>
+      <div class="dash-title">Geospatial Field Coverage Dashboard</div>
+      <p class="dash-desc">GIS-enabled coverage map visualising enumerator deployment, monitoring visit frequency, and data collection gaps across counties. Built for the KNBS 2019 National Census to ensure equitable field coverage across Kericho County.</p>
+      <div class="dash-tools">
+        <span class="tool-chip">ArcGIS</span>
+        <span class="tool-chip">QGIS</span>
+        <span class="tool-chip">Power BI</span>
+      </div>
+      <p class="dash-metric">95% data accuracy | 150 enumerators coordinated</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- M&E FRAMEWORK -->
+<section id="framework">
+  <p class="section-eyebrow">Work Samples · 02</p>
+  <h2 class="section-title">M&E Results Framework</h2>
+  <p class="section-sub">Sample results chain from the Ajira Digital Programme — mapping inputs through to long-term impact with indicators, assumptions, and verification sources.</p>
+
+  <div class="framework-wrap">
+    <div class="fw-header">
+      <div>
+        <div class="fw-header-title">Ajira Digital Programme — Results Chain</div>
+        <div class="fw-header-meta" style="margin-top:0.3rem">Mastercard Foundation · Rift Valley Region · 2020–2025</div>
+      </div>
+      <div class="fw-header-meta">Youth Employment & Digital Skills</div>
+    </div>
+
+    <div class="fw-chain">
+      <div class="fw-col">
+        <div class="fw-col-head">Inputs</div>
+        <div class="fw-col-body">
+          <div class="fw-item"><strong>Funding</strong>KES 1.2M annual programme budget</div>
+          <div class="fw-item"><strong>Human Resources</strong>30+ trained regional staff & MEAL lead</div>
+          <div class="fw-item"><strong>Technology</strong>KoboToolbox, Power BI, SPSS, LMS platform</div>
+          <div class="fw-item"><strong>Partnerships</strong>County governments, Ministry of ICT, TSC</div>
+        </div>
+      </div>
+      <div class="fw-col">
+        <div class="fw-col-head">Activities</div>
+        <div class="fw-col-body">
+          <div class="fw-item"><strong>Training Delivery</strong>Digital skills bootcamps across 4 counties</div>
+          <div class="fw-item"><strong>MEAL Implementation</strong>Baseline, midline & endline assessments</div>
+          <div class="fw-item"><strong>Job Placement</strong>Career coaching & employer linkage events</div>
+          <div class="fw-item"><strong>Reporting</strong>Monthly data collection & quarterly reports</div>
+        </div>
+      </div>
+      <div class="fw-col">
+        <div class="fw-col-head">Outputs</div>
+        <div class="fw-col-body">
+          <div class="fw-item"><strong>Direct Outputs</strong>Youth trained in digital & freelance skills</div>
+          <div class="fw-item"><strong>Compliance</strong>100% donor reporting on time</div>
+          <div class="fw-item"><strong>Data Products</strong>12 analytical reports produced annually</div>
+          <div class="fw-item"><strong>Capacity</strong>Staff trained on MEAL tools & standards</div>
+        </div>
+      </div>
+      <div class="fw-col">
+        <div class="fw-col-head">Outcomes</div>
+        <div class="fw-col-body">
+          <div class="fw-item"><strong>Short-term</strong>Youth demonstrate improved digital skills (0–3M)</div>
+          <div class="fw-item"><strong>Medium-term</strong>Youth access formal/informal employment (3–6M)</div>
+          <div class="fw-item"><strong>Income Growth</strong>↑ Average monthly income at 3M & 6M post-graduation</div>
+          <div class="fw-item"><strong>Gender Equity</strong>Female participation ≥50% of enrolled youth</div>
+        </div>
+      </div>
+      <div class="fw-col">
+        <div class="fw-col-head">Impact</div>
+        <div class="fw-col-body">
+          <div class="fw-item"><strong>Long-term</strong>Sustained reduction in youth unemployment in Rift Valley</div>
+          <div class="fw-item"><strong>Policy</strong>Evidence informs county digital employment strategies</div>
+          <div class="fw-item"><strong>Systemic</strong>Increased digital economy participation among TVET graduates</div>
+          <div class="fw-item"><strong>Achieved</strong>20% increase in youth employment rates</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-outcomes">
+      <div class="outcome-card">
+        <div class="outcome-num">INDICATOR 01</div>
+        <div class="outcome-title">% Youth in Quality Employment at 6M</div>
+        <div class="outcome-text">Target: ≥70% employed or self-employed. Measured via post-graduation tracer surveys at 3M and 6M. Verified through payroll records and income receipts. Disaggregated by gender, county, and course.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">INDICATOR 02</div>
+        <div class="outcome-title">Average Monthly Income Growth (KES)</div>
+        <div class="outcome-text">Baseline at graduation vs. 3M and 6M follow-up. Income data collected via KoboToolbox and validated against market wage benchmarks. Reported in all quarterly donor updates.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">ASSUMPTION</div>
+        <div class="outcome-title">Key Programme Assumptions</div>
+        <div class="outcome-text">Youth remain reachable post-graduation · Local labour market absorbs digital skills · County government partners sustain engagement · No major economic shocks reduce employer hiring during programme period.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA CLEANING CASE STUDY -->
+<section id="cleaning">
+  <p class="section-eyebrow">Work Samples · 03</p>
+  <h2 class="section-title">Data Cleaning Case Study</h2>
+  <p class="section-sub">How a systematic data quality overhaul improved completeness from 61% to 96% ahead of a multi-county programme evaluation.</p>
+
+  <div class="case-grid">
+    <div class="case-timeline">
+      <div class="case-step">
+        <div class="step-dot">01</div>
+        <div class="step-content">
+          <div class="step-label">Problem Identification</div>
+          <div class="step-title">Audit of 293-record dataset</div>
+          <div class="step-text">Routine DQA revealed 39% of records had missing income fields, duplicate Youth IDs, inconsistent county codes, and out-of-range salary values. Root cause: ward-level data entry using paper forms re-entered manually.</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="step-dot">02</div>
+        <div class="step-content">
+          <div class="step-label">Tool Redesign</div>
+          <div class="step-title">KoboToolbox form with validation rules</div>
+          <div class="step-text">Rebuilt data collection forms with mandatory fields, skip logic, and range constraints. Eliminated free-text county entry; replaced with dropdown validation. Added unique ID auto-generation to prevent duplicates.</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="step-dot">03</div>
+        <div class="step-content">
+          <div class="step-label">SPSS Cleaning Script</div>
+          <div class="step-title">Automated cleaning & flagging routine</div>
+          <div class="step-text">Wrote SPSS syntax to flag outliers (salary &gt;3× IQR), identify duplicates, recode inconsistent variables, and generate a data quality report summarising completeness per field per county.</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="step-dot">04</div>
+        <div class="step-content">
+          <div class="step-label">Enumerator Retraining</div>
+          <div class="step-title">12 community enumerators retrained</div>
+          <div class="step-text">Delivered a half-day practical training on KoboToolbox digital entry, data verification protocols, and escalation procedures for anomalies. Distributed quick-reference laminated data quality checklist.</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="step-dot">05</div>
+        <div class="step-content">
+          <div class="step-label">Result</div>
+          <div class="step-title">96% completeness in one cycle</div>
+          <div class="step-text">Next data collection round achieved 96% completeness, eliminating all duplicate IDs and reducing out-of-range values to &lt;1%. Reporting cycle reduced by 2 weeks. Evaluation findings strengthened for donor submission.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-result">
+      <div class="result-title">Before & After: Data Quality</div>
+      <div class="result-before-after">
+        <div class="result-col before">
+          <div class="result-col-head">⚠ Before</div>
+          <div class="result-item">61% record completeness</div>
+          <div class="result-item">Duplicate Youth_IDs across counties</div>
+          <div class="result-item">Free-text county names (23 variants)</div>
+          <div class="result-item">Salary outliers undetected</div>
+          <div class="result-item">Manual Excel re-entry errors</div>
+          <div class="result-item">+2 week reporting lag</div>
+        </div>
+        <div class="result-col after">
+          <div class="result-col-head">✓ After</div>
+          <div class="result-item">96% record completeness</div>
+          <div class="result-item">Zero duplicate IDs (auto-generated)</div>
+          <div class="result-item">Dropdown validation, 0 variants</div>
+          <div class="result-item">SPSS outlier flags automated</div>
+          <div class="result-item">KoboToolbox direct digital entry</div>
+          <div class="result-item">Reporting on schedule</div>
+        </div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-val">+35pp</div>
+          <div class="kpi-label">Completeness gain</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val">−2wk</div>
+          <div class="kpi-label">Reporting time saved</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val">0</div>
+          <div class="kpi-label">Duplicate records</div>
+        </div>
+      </div>
+      <div class="code-block">
+<span class="code-comment">* SPSS cleaning syntax — Nelson Mitei, 2024</span>
+<span class="code-comment">* Step 1: Flag salary outliers (&gt;3× IQR)</span>
+<span class="code-fn">COMPUTE</span> salary_z = (KSH_3M - MEAN(KSH_3M)) / SD(KSH_3M).
+<span class="code-fn">IF</span> (ABS(salary_z) &gt; 3) outlier_flag = 1.
+
+<span class="code-comment">* Step 2: Identify duplicate Youth_IDs</span>
+<span class="code-fn">SORT CASES</span> BY Youth_ID.
+<span class="code-fn">MATCH FILES</span> FILE=* /BY Youth_ID /LAST=last_case.
+
+<span class="code-comment">* Step 3: Completeness report per county</span>
+<span class="code-fn">FREQUENCIES</span> VARIABLES=<span class="code-str">KSH_0M KSH_3M KSH_6M County</span>
+  /MISSING=INCLUDE /FORMAT=NOTABLE.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="section-sub">Tools and methodologies used across 6+ years of MEAL, data analysis, and dashboard development work.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">M&E Methodologies</div>
+      <div class="skill-item">Results-Based Management (RBM)</div>
+      <div class="skill-item">Theories of Change</div>
+      <div class="skill-item">Logical Frameworks</div>
+      <div class="skill-item">Outcome Harvesting</div>
+      <div class="skill-item">Participatory Monitoring</div>
+      <div class="skill-item">Evaluations (mid-term, end-line)</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data & Analysis Tools</div>
+      <div class="skill-item">SPSS (syntax & analysis)</div>
+      <div class="skill-item">STATA</div>
+      <div class="skill-item">Advanced Excel (Power Query)</div>
+      <div class="skill-item">Power BI (dashboards)</div>
+      <div class="skill-item">KoboToolbox / ODK</div>
+      <div class="skill-item">Predictive Modelling</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">GIS & Digital</div>
+      <div class="skill-item">ArcGIS</div>
+      <div class="skill-item">QGIS</div>
+      <div class="skill-item">GIS-enabled dashboards</div>
+      <div class="skill-item">AI for Business Intelligence</div>
+      <div class="skill-item">Database Management</div>
+      <div class="skill-item">ERP Data Systems</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Reporting & Compliance</div>
+      <div class="skill-item">Donor reports (MFC, EU, BMZ)</div>
+      <div class="skill-item">Data Quality Assessments (DQA)</div>
+      <div class="skill-item">Beneficiary Feedback (AAP)</div>
+      <div class="skill-item">Learning Briefs & Policy Briefs</div>
+      <div class="skill-item">Safeguarding Standards</div>
+      <div class="skill-item">Adaptive Management</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow">Get in Touch</p>
+  <h2 class="section-title">Available for remote work</h2>
+  <p class="section-sub">Open to freelance consultancy, short-term data contracts, dashboard development projects, and M&E assignments — from anywhere.</p>
+
+  <div class="contact-box">
+    <div class="contact-copy">
+      <p class="section-eyebrow">Let's work together</p>
+      <div class="contact-title">Nelson Cheruiyot Mitei</div>
+      <p class="contact-text">MEAL Specialist · Data Analyst · Dashboard Developer<br>MSc Monitoring & Evaluation · Nairobi, Kenya<br><br>6+ years. Donor-compliant. Field-tested. Remote-ready.</p>
+    </div>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-icon">EMAIL</span>
+        <span class="contact-val"><a href="mailto:mcmitey@gmail.com">mcmitey@gmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">PHONE</span>
+        <span class="contact-val">+254 712 358 810</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">LINKEDIN</span>
+        <span class="contact-val"><a href="https://linkedin.com/in/nelsonmitei" target="_blank">linkedin.com/in/nelsonmitei</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">LOCATION</span>
+        <span class="contact-val">Nairobi, Kenya · Available globally (remote)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Nelson Cheruiyot Mitei · MEAL & Data Portfolio · 2026</span>
+  <span class="footer-note">MSc M&E · Power BI · SPSS · KoboToolbox · ArcGIS</span>
+</footer>
+
+</body>
+</html>
